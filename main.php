@@ -2,9 +2,7 @@
 include 'db_connection.php';
 date_default_timezone_set('Asia/Dhaka');
 
-
-
-// 1.Fetch all comments
+// Fetch all comments
 $sql = "SELECT * FROM comments ORDER BY commenttime ASC";
 $result = $conn->query($sql);
 
@@ -14,7 +12,7 @@ while ($r = $result->fetch_assoc()) {
     $allComments[] = $r;
 }
 
-// 2.Build parent mapping
+// Build parent mapping
 $commentsByParent = [];
 foreach ($allComments as $c) {
     $parent = intval($c['replyto']);
@@ -24,7 +22,7 @@ foreach ($allComments as $c) {
     $commentsByParent[$parent][] = $c;
 }
 
-// 3.Count replies recursively
+// Count replies recursively
 function countThreadSize($map, $id) {
     if (!isset($map[$id])) return 1; 
     $count = 1;
@@ -34,7 +32,7 @@ function countThreadSize($map, $id) {
     return $count;
 }
 
-// 4.Build top-level threads list sorted by size (DESC)
+// Build top-level threads list sorted by size (DESC)
 $threadRoots = [];
 foreach ($commentsByParent[0] ?? [] as $root) {
     $id = $root['commentnumber'];
@@ -61,16 +59,8 @@ function renderThread($map, $comment, $level = 0) {
         <td>{$id}</td>
         <td>{$name}</td>
         <td>{$time}</td>
-        <td style='padding-left:{$padding}px'>
-        {$text}
-         <a href='#' 
-               class='reply-link' 
-               data-id='{$id}' 
-               data-commenter='{$name}'>
-               [Reply]
-            </a>
-        </td>
-     
+        <td style='padding-left:{$padding}px'>{$text}</td>
+        <td><a href='#' class='reply-link' data-id='{$id}' data-commenter='{$name}'>[Reply]</a></td>
     </tr>";
 
     // Render children (replies)
@@ -102,7 +92,7 @@ function renderThread($map, $comment, $level = 0) {
                 <th>Commenter</th>
                 <th>Time</th>
                 <th>Comment</th>
-               
+                <th>Action</th>
             </tr>
         </thead>
 
@@ -116,8 +106,8 @@ function renderThread($map, $comment, $level = 0) {
     </table>
 
     <div class="comments-inputs">
-        <input type="text" id="name" placeholder="Type your name here ">
-        <input type="text" id="comment" placeholder="Type your comment here ">
+        <input type="text" id="name" placeholder="Your name">
+        <input type="text" id="comment" placeholder="Your comment">
         <input type="hidden" id="replyto" value="0">
         <button id="post" disabled>Post</button>
     </div>
