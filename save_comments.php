@@ -2,10 +2,13 @@
 date_default_timezone_set('Asia/Dhaka');
 include 'db_connection.php';
 
+
+
 if (isset($_POST['name']) && isset($_POST['comment'])) {
 
     $name = $conn->real_escape_string($_POST['name']);
     $comment = $conn->real_escape_string($_POST['comment']);
+    
     $replyto = !empty($_POST['replyto']) ? intval($_POST['replyto']) : "NULL";
 
     $time = date("Y-m-d H:i:s");
@@ -28,4 +31,8 @@ if (isset($_POST['name']) && isset($_POST['comment'])) {
 }
 
 $conn->close();
+
+
+
+
 ?>
