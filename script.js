@@ -95,8 +95,14 @@ $(document).ready(function(){
                     <td>${no}</td>
                     <td>${row.commenter}</td>
                     <td>${time}</td>
-                    <td style="padding-left: ${getPadding(level)}px">${row.comment}</td>
-                    <td><a href="#" class="reply-link" data-id="${no}" data-commenter="${row.commenter}">[Reply]</a></td>
+                    <td style="padding-left: ${getPadding(level)}px">
+                    ${row.comment}
+                    <a href="#"
+                     class="reply-link"
+                      data-id="${no}" 
+                      data-commenter="${row.commenter}">[Reply]
+                      </a>
+                      </td>
                 </tr>
             `;
 

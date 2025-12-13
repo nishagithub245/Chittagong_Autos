@@ -59,8 +59,16 @@ function renderThread($map, $comment, $level = 0) {
         <td>{$id}</td>
         <td>{$name}</td>
         <td>{$time}</td>
-        <td style='padding-left:{$padding}px'>{$text}</td>
-        <td><a href='#' class='reply-link' data-id='{$id}' data-commenter='{$name}'>[Reply]</a></td>
+        <td style='padding-left:{$padding}px'>
+        {$text}
+         <a href='#' 
+               class='reply-link' 
+               data-id='{$id}' 
+               data-commenter='{$name}'>
+               [Reply]
+            </a>
+        </td>
+     
     </tr>";
 
     // Render children (replies)
@@ -92,7 +100,7 @@ function renderThread($map, $comment, $level = 0) {
                 <th>Commenter</th>
                 <th>Time</th>
                 <th>Comment</th>
-                <th>Action</th>
+               
             </tr>
         </thead>
 
@@ -106,8 +114,8 @@ function renderThread($map, $comment, $level = 0) {
     </table>
 
     <div class="comments-inputs">
-        <input type="text" id="name" placeholder="Your name">
-        <input type="text" id="comment" placeholder="Your comment">
+        <input type="text" id="name" placeholder="Type your name here ">
+        <input type="text" id="comment" placeholder="Type your comment here ">
         <input type="hidden" id="replyto" value="0">
         <button id="post" disabled>Post</button>
     </div>

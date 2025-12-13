@@ -3,14 +3,13 @@ body {
   background-color: #f2f2f2;
   margin: 0;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ 
 }
 
 .comments-section {
   width: 100%;
   height: 100vh;
+  border-collapse: collapse;
   background-color: #d9d9d9;
   padding: 10px;
   border-radius: 8px;
@@ -20,8 +19,12 @@ body {
 }
 
 .comment-table {
-  width: 100%;
-  border-collapse: collapse; /* remove default gaps */
+  
+  table-layout: fixed;
+
+
+  width: 80%;
+  border-collapse: collapse; 
   background: transparent; 
   flex: 1;                  
   border-spacing: 0;
@@ -30,11 +33,11 @@ body {
 
 .comment-table th,
 .comment-table td {
-  padding: 4px 8px;      /* reduced padding for tighter rows */
+  padding: 4px 8px;     
   text-align: left;
   font-size: 14px;
-  line-height:50px;      /* tighter line spacing */
-  vertical-align: middle; /* center content vertically */
+  line-height:50px;      
+  vertical-align: middle;
 }
 
 .comment-table thead {
@@ -44,38 +47,55 @@ body {
 }
 
 .comment-table thead th {
-  /* padding-top: 80px;  adds a little gap above header */
+  /* padding-top: 80px; */
   padding-bottom: 4px;
   font-weight: bold;
   text-decoration: underline;
 }
 
 .comments-inputs {
+  width:80%;
   display: flex;
+  
+  flex-direction : row;
   gap: 8px;
-  /* margin-top:6px; */
   margin-bottom: 280px;
+  align-items:flex-start;
+  
+  
+ 
+
 }
 
 .comments-inputs input[type="text"] {
   padding: 5px;
-  border: 1px solid #999;
+  border: 1.5px solid black;
   font-size: 14px;
-  flex: 2;
+
+ 
+ 
 }
 
-.comments-inputs .comment-box {
-  flex:2;
+#name {
+  flex-grow: 1; 
+  
 }
+#comment {
+    flex-grow:1;
+}
+
 
 .comments-inputs button {
   padding: 6px 12px;
-  background-color: #24486b;
+  background-color: #0a3663ea;
   color: white;
-  border: none;
+  border: 1.5px solid rgba(0, 0, 0, 0.856) ;
   cursor: pointer;
   font-size: 14px;
+ 
+  
 }
+
 
 
 
