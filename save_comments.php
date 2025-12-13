@@ -1,38 +1,33 @@
 <?php
-date_default_timezone_set('Asia/Dhaka');
 include 'db_connection.php';
+date_default_timezone_set('Asia/Dhaka');
 
-
-
-if (isset($_POST['name']) && isset($_POST['comment'])) {
+if(isset($_POST['name'], $_POST['comment'])){
 
     $name = $conn->real_escape_string($_POST['name']);
     $comment = $conn->real_escape_string($_POST['comment']);
-    
-    $replyto = !empty($_POST['replyto']) ? intval($_POST['replyto']) : "NULL";
-
-    $time = date("Y-m-d H:i:s");
+    $replyto = isset($_POST['replyto']) ? intval($_POST['replyto']) : 0;
+      $time = date("h:i A");
+      
 
     $sql = "INSERT INTO comments (commenter, comment, commenttime, replyto)
-            VALUES ('$name', '$comment', '$time', $replyto)";
+            VALUES ('$name', '$comment', NOW(), $replyto)";
 
-    if ($conn->query($sql)) {
+    if($conn->query($sql)){
         $id = $conn->insert_id;
 
-        $result = $conn->query("SELECT * FROM comments WHERE commentnumber = $id");
-        $row = $result->fetch_assoc();
-        $row['commenttime'] = date("h:i A", strtotime($row['commenttime']));
-
-        echo json_encode($row);
+        echo json_encode([
+            "commentnumber" => $id,
+            "commenter" => $name,
+            "comment" => $comment,
+            "commenttime" => date("h:i A"),
+            "replyto" => $replyto
+        ]);
     } else {
         http_response_code(500);
-        echo json_encode(["error" => "Insert failed"]);
+        echo json_encode(["error" => "Database insert failed"]);
     }
 }
 
 $conn->close();
-
-
-
-
 ?>
