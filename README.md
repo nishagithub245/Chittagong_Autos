@@ -72,3 +72,10 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 6.Launch the Application
 -Open your browser and navigate to:
 -http://localhost/ChittagongAutos/main.php
+
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "chittagongautos";
+
