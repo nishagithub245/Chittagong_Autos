@@ -35,16 +35,7 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - 🖥️ A local server environment (e.g., XAMPP or WAMP)
 - 🌐 Web browser (Chrome recommended for testing)
 
-
-
-Setup Instructions ⚙️
-Prerequisites
-.🧩PHP is installed and configured on your system.
-.🗄️ MySQL database server
-.🖥️A local server environment (e.g., XAMPP or WAMP)
-.🌐 Web browser (Chrome recommended for testing)
-
-Steps
+**Steps:**
 1.Clone or Download the Project
 git clone https://github.com/yourusername/ChittagongAutos.git
 Or download the ZIP file and extract it into your local server directory:
