@@ -37,7 +37,7 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 <h3>Steps to Install</h3>
 <ol>
   <li>
-  <pre><code>git clone https://github.com/nishagithub245/ChittagongAutos.git</code></pre>
+  <pre><code> https://github.com/nishagithub245/ChittagongAutos.git</code></pre>
   </li>
   or download the ZIP file and extract it into your local server directory:
  <pre><code>C:\xampp\htdocs\ChittagongAutos</code></pre>
