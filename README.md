@@ -16,7 +16,7 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - 📊 **Engagement-Based Thread Sorting:** Comment threads with more activity automatically move higher.
 - 🚀 **Real-Time Thread Reordering:** As replies increase, threads dynamically reposition to reflect engagement.
 
-🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Tech Stack 🛠️
 
@@ -25,7 +25,8 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - 🗄️ **Database:** MySQL  
 - 💾 **Storage:** Persistent saved comments and reply hierarchy
 
-🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Setup Instructions ⚙️
 
@@ -37,37 +38,37 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 
 **Steps:**
 1.Clone or Download the Project
-git clone https://github.com/yourusername/ChittagongAutos.git
-Or download the ZIP file and extract it into your local server directory:
-C:\xampp\htdocs\ChittagongAutos
+-git clone https://github.com/yourusername/ChittagongAutos.git
+-Or download the ZIP file and extract it into your local server directory:
+-C:\xampp\htdocs\ChittagongAutos
 
 2.Create the Database
-Open phpMyAdmin and run:
-CREATE DATABASE chittagongautos;
+-Open phpMyAdmin and run:
+-CREATE DATABASE chittagongautos;
 
 3.Create the Comments Table
-Inside the chittagongautos database, run:
+-Inside the chittagongautos database, run:
 
-CREATE TABLE comments (
-    commentnumber INT AUTO_INCREMENT PRIMARY KEY,
-    commenter VARCHAR(100) NOT NULL,
-    comment TEXT NOT NULL,
-    commenttime DATETIME NOT NULL,
-    replyto INT DEFAULT NULL
-);
+-CREATE TABLE comments (
+    -commentnumber INT AUTO_INCREMENT PRIMARY KEY,
+    -commenter VARCHAR(100) NOT NULL,
+   - comment TEXT NOT NULL,
+   - commenttime DATETIME NOT NULL,
+   - replyto INT DEFAULT NULL
+-);
 
 
 4.Configure Database Connection
-Open db_connection.php and update the credentials:
+-Open db_connection.php and update the credentials:
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "chittagongautos";
+-$host = "localhost";
+-$user = "root";
+-$password = "";
+-$database = "chittagongautos";
 
 5.Start the Local Server
-Start Apache and MySQL from XAMPP or WAMP control panel.
+-Start Apache and MySQL from XAMPP or WAMP control panel.
 
 6.Launch the Application
-Open your browser and navigate to:
-http://localhost/ChittagongAutos/main.php
+-Open your browser and navigate to:
+-http://localhost/ChittagongAutos/main.php
