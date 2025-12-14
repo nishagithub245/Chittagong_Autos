@@ -36,13 +36,18 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - 🖥️ A local server environment (e.g., XAMPP or WAMP)
 - 🌐 Web browser (Chrome recommended for testing)
 
-**Steps:**
-1.Clone or Download the Project
--git clone https://github.com/yourusername/ChittagongAutos.git
--Or download the ZIP file and extract it into your local server directory:
--C:\xampp\htdocs\ChittagongAutos
+### Steps to Run the Project 🚀
 
-2.Create the Database
+---
+
+**1. Clone or Download the Project**
+
+- Clone via Git:
+
+```bash
+git clone https://github.com/yourusername/ChittagongAutos.git
+
+**2.Create the Database**
 -Open phpMyAdmin and run:
 -CREATE DATABASE chittagongautos;
 
