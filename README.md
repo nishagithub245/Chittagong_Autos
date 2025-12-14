@@ -1,4 +1,4 @@
-💻 Project Name: Chittagong Autos — Live Comment and Thread Reply System
+💻 Project Name: Chittagong Autos🚗 — Live Comment and Thread Reply System
 
 A dynamic comment system built for Chittagong Autos to allow customers and staff to interact through threaded comments under car listings. The system supports live comment posting, reply tagging, hierarchical thread organization, and smart reordering based on engagement.
 
@@ -34,12 +34,10 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - 🖥️ A local server environment (e.g., XAMPP or WAMP)
 - 🌐 Web browser (Chrome recommended for testing)
 
-### Steps to Run the Project 🚀
-**1. Clone or Download the Project**
+### 1. Clone the Project
 
-- Clone via Git:
+Open your terminal and run:
+
 ```bash
 git clone https://github.com/yourusername/ChittagongAutos.git
-**Or download the ZIP file and extract it into your local server directory:**
-C:\xampp\htdocs\ChittagongAutos
 
