@@ -38,12 +38,12 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 
 Open your terminal and run:
 
-`bash`
+```bash
 git clone https://github.com/yourusername/ChittagongAutos.git
 
 ###2.Create the Database
 Open phpMyAdmin or MySQL client and run:
-`sql`
+```sql
 CREATE DATABASE chittagongautos;
 
 
