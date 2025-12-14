@@ -2,7 +2,7 @@
 
 A dynamic comment system built for Chittagong Autos to allow customers and staff to interact through threaded comments under car listings. The system supports live comment posting, reply tagging, hierarchical thread organization, and smart reordering based on engagement.
 
-🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Features ✨
 
