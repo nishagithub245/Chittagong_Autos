@@ -1,10 +1,10 @@
-💻 Project Name: Chittagong Autos🚗 — Live Comment and Thread Reply System
+💻 <h3>Project Name: Chittagong Autos🚗 — Live Comment and Thread Reply System </h3>
 
 A dynamic comment system built for Chittagong Autos to allow customers and staff to interact through threaded comments under car listings. The system supports live comment posting, reply tagging, hierarchical thread organization, and smart reordering based on engagement.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Features ✨
+<h3> Features ✨</h3>
 
 - ⚡ **Live Comment Posting:** Post comments instantly without any page reload.
 - 🏷️ **Smart Reply Tagging:** Automatically tag users using the @username format when replying.
@@ -36,52 +36,45 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 
 <h3>Steps to Install</h3>
 <ol>
-  <li>Clone the repository:
-        <pre><code>git clone https://github.com/nishagithub245/ChittagongAutos.git</code></pre>
+  <li>
+  <pre><code>git clone https://github.com/nishagithub245/ChittagongAutos.git</code></pre>
   </li>
-  <li> or download the ZIP file and extract it into your local server directory:
-    <pre><code>C:\xampp\htdocs\ChittagongAutos</code></pre>
-  </li>
-
+  or download the ZIP file and extract it into your local server directory:
+ <pre><code>C:\xampp\htdocs\ChittagongAutos</code></pre>
   
-<li>Create the Database
-
-Open phpMyAdmin and run:
+<li>
 <pre><code>CREATE DATABASE chittagongautos;</code></pre>
-  </li>
+</li>
   
-   <li>
-Create the Comments Table
+<li>
 Inside the chittagongautos database, run:
- <pre><code>CREATE TABLE comments (
+ <pre><code>
+    CREATE TABLE comments (
     commentnumber INT AUTO_INCREMENT PRIMARY KEY,
     commenter VARCHAR(100) NOT NULL,
     comment TEXT NOT NULL,
     commenttime DATETIME NOT NULL,
     replyto INT DEFAULT NULL
-);</code></pre>
-  </li>
+    );
+ </code></pre>
+ </li>
 
-  
-   <li>Open db_connection.php and update the credentials:
+<li>Open db_connection.php and update the credentials:
 
 
 <pre><code>
-  $host = "localhost";
+$host = "localhost";
 $user = "root";
 $password = "";
 $database = "chittagongautos";
 </code></pre>
-  </li>
+</li>
   
-  <li>Start Apache and MySQL from XAMPP or WAMP control panel.</li>
+<li>Start Apache and MySQL from XAMPP or WAMP control panel.</li>
 
- <li> Launch the Application
-
+<li> Launch the Application
 Open your browser and navigate to:</li> 
-
 <pre><code> http://localhost/ChittagongAutos/main.php</code></pre>
- 
 </ol>
 
 
