@@ -2,7 +2,9 @@
 include 'db_connection.php';
 date_default_timezone_set('Asia/Dhaka');
 
-// Fetch all comments
+
+
+// 1.Fetch all comments
 $sql = "SELECT * FROM comments ORDER BY commenttime ASC";
 $result = $conn->query($sql);
 
@@ -12,7 +14,7 @@ while ($r = $result->fetch_assoc()) {
     $allComments[] = $r;
 }
 
-// Build parent mapping
+// 2.Build parent mapping
 $commentsByParent = [];
 foreach ($allComments as $c) {
     $parent = intval($c['replyto']);
@@ -22,7 +24,7 @@ foreach ($allComments as $c) {
     $commentsByParent[$parent][] = $c;
 }
 
-// Count replies recursively
+// 3.Count replies recursively
 function countThreadSize($map, $id) {
     if (!isset($map[$id])) return 1; 
     $count = 1;
@@ -32,7 +34,7 @@ function countThreadSize($map, $id) {
     return $count;
 }
 
-// Build top-level threads list sorted by size (DESC)
+// 4.Build top-level threads list sorted by size (DESC)
 $threadRoots = [];
 foreach ($commentsByParent[0] ?? [] as $root) {
     $id = $root['commentnumber'];

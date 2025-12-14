@@ -29,7 +29,7 @@ $(document).ready(function(){
         $(`#comment-body tr[data-id='${rootId}']`).nextAll().each(function(){
             let parent = $(this).data('parent');
             if(parent == rootId) count++;
-            else if(parent == 0) return false; // stop at next top-level
+            else if(parent == 0) return false; 
         });
         return count;
     }
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
         topRows.each(function(){
             let id = $(this).data('id');
-            if(id == rootId) return true; // skip self
+            if(id == rootId) return true; 
 
             let otherCount = countThreadRows(id);
             if(threadCount > otherCount){
@@ -54,7 +54,7 @@ $(document).ready(function(){
                 });
                 $(rootRow).insertBefore($(this));
                 inserted = true;
-                return false; // break loop
+                return false; 
             }
         });
         if(!inserted){
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
             // Insert new row
             if(parent == 0){
-                $('#comment-body').append(newRow); // top-level comment
+                $('#comment-body').append(newRow); 
             } else {
                 let parentRow = $(`#comment-body tr[data-id='${parent}']`);
                 let lastChild = parentRow;
