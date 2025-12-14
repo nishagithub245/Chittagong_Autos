@@ -40,7 +40,6 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 - Clone via Git:
 ```bash
 git clone https://github.com/yourusername/ChittagongAutos.git
--Or download the ZIP file and extract it into your local server directory:
-```bash
+**Or download the ZIP file and extract it into your local server directory:**
 C:\xampp\htdocs\ChittagongAutos
 
