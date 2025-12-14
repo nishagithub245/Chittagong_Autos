@@ -6,13 +6,13 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 
 ### Features ✨
 
-- ⚡ **Live Comment Posting:** Post comments instantly without any page reload — smooth and fast UX.
+- ⚡ **Live Comment Posting:** Post comments instantly without any page reload.
 - 🏷️ **Smart Reply Tagging:** Automatically tag users using the @username format when replying.
 - 🧵 **Nested Threaded Replies:** Replies appear neatly under the correct comment chain, keeping conversations clear.
-- 🔄 **Persistent Comments:** All existing comments load automatically on page refresh — no data loss.
+- 🔄 **Persistent Comments:** All existing comments load automatically on page refresh.
 - ⏰ **Automatic Time Stamps:** Each comment records the exact posting time without manual input.
 - 🚫 **Smart Post Button Control:** The Post button stays disabled until all required inputs are filled correctly.
-- 🔌 **Asynchronous Database Updates:** Comments are saved using AJAX in the background — zero interruption.
+- 🔌 **Asynchronous Database Updates:** Comments are saved using AJAX in the background.
 - 📊 **Engagement-Based Thread Sorting:** Comment threads with more activity automatically move higher.
 - 🚀 **Real-Time Thread Reordering:** As replies increase, threads dynamically reposition to reflect engagement.
 
@@ -40,4 +40,5 @@ Open your terminal and run:
 
 ```bash
 git clone https://github.com/yourusername/ChittagongAutos.git
+
 
