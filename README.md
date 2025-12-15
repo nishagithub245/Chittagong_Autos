@@ -29,14 +29,14 @@ A dynamic comment system built for Chittagong Autos to allow customers and staff
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 <h3>⚙️Prerequisites</h3>
-  <ol>
+  <ul>
     
 <li>🧩PHP installed and configured on your system</li>
 <li>🗄️MySQL database server</li>
 <li>🖥️A local server environment (e.g., XAMPP or WAMP)</li>
 <li>🌐Web browser (Chrome recommended for testing)</li>
 
-  </ol>
+  </ul>
 
 
 <h3>Steps to Install</h3>
