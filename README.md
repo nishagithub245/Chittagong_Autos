@@ -1,4 +1,4 @@
-<h2>💻Project Name: Chittagong Autos🚗<br>Live Comment and Thread Reply System </h2>
+<h2>💻Project Name: <strong>Chittagong Autos🚗</strong>strong><br>Live Comment and Thread Reply System </h2>
 
 A dynamic comment system built for Chittagong Autos to allow customers and staff to interact through threaded comments under car listings. The system supports live comment posting, reply tagging, hierarchical thread organization, and smart reordering based on engagement.
 
@@ -76,7 +76,7 @@ $database = "chittagongautos";
 Open your browser and navigate to:</li> 
 <pre><code> http://localhost/ChittagongAutos/main.php</code></pre>
 </ol>
--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>⚡Live Behaviors</h3>
 <ol>
   <li>📝Instant UI Update</li>
@@ -84,7 +84,7 @@ Open your browser and navigate to:</li>
   <li>🧵Threaded Replies</li>
   <li>📈Dynamic Thread Reordering</li>
 </ol>
--------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>🤝Contributing</h3>
 <ol>
   <li>Fork the repository.</li>
@@ -93,7 +93,7 @@ Open your browser and navigate to:</li>
   <li>Push to the branch (git push origin feature-name).</li>
   <li>Create a new Pull Request.</li>
 </ol>
--------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>License</h3>
 This project is implemented by <strong>Sidratul Muntaha Nisha...</strong>
 
