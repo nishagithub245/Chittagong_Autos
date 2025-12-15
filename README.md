@@ -93,7 +93,7 @@ Open your browser and navigate to:</li>
   <li>Push to the branch (git push origin feature-name).</li>
   <li>Create a new Pull Request.</li>
 </ol>
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>License</h3>
 This project is implemented by <strong>Sidratul Muntaha Nisha...</strong>
 
