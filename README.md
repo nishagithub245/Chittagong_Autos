@@ -1,4 +1,4 @@
-<h2>💻Project Name: <strong>Chittagong Autos🚗</strong>strong><br>Live Comment and Thread Reply System </h2>
+<h2>💻Project Name: <strong> Chittagong Autos🚗 </strong><br>Live Comment and Thread Reply System </h2>
 
 A dynamic comment system built for Chittagong Autos to allow customers and staff to interact through threaded comments under car listings. The system supports live comment posting, reply tagging, hierarchical thread organization, and smart reordering based on engagement.
 
@@ -76,7 +76,7 @@ $database = "chittagongautos";
 Open your browser and navigate to:</li> 
 <pre><code> http://localhost/ChittagongAutos/main.php</code></pre>
 </ol>
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>⚡Live Behaviors</h3>
 <ol>
   <li>📝Instant UI Update</li>
