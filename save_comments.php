@@ -25,7 +25,7 @@ if(isset($_POST['name'], $_POST['comment'])){
         ]);
     } else {
         http_response_code(500);
-        echo json_encode(["error" => "Database insert failed"]);
+        echo json_encode(["error" => "Database insertion failed"]);
     }
 }
 

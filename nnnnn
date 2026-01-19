@@ -23,56 +23,7 @@ $(document).ready(function(){
         return 15 * level;
     }
 
-    // Function to count rows in a thread
-    function countThreadRows(rootId){
-        let count = 1; // root
-        $(`#comment-body tr[data-id='${rootId}']`).nextAll().each(function(){
-            let parent = $(this).data('parent');
-            if(parent == rootId) count++;
-            else if(parent == 0) return false; 
-        });
-        return count;
-    }
-
-    // Function to reposition thread based on number of entries
-    function repositionThread(rootId){
-        let rootRow = $(`#comment-body tr[data-id='${rootId}']`);
-        let threadCount = countThreadRows(rootId);
-
-        let topRows = $('#comment-body tr[data-parent="0"]');
-        let inserted = false;
-
-        topRows.each(function(){
-            let id = $(this).data('id');
-            if(id == rootId) return true; 
-
-            let otherCount = countThreadRows(id);
-            if(threadCount > otherCount){
-                $(rootRow).nextAll().each(function(){
-                    if($(this).data('parent') != rootId) return false;
-                    rootRow = $(this);
-                });
-                $(rootRow).insertBefore($(this));
-                inserted = true;
-                return false; 
-            }
-        });
-        if(!inserted){
-            let lastRow = $('#comment-body tr[data-parent="0"]').last();
-            $(rootRow).nextAll().each(function(){
-                if($(this).data('parent') != rootId) return false;
-                rootRow = $(this);
-            });
-            $(rootRow).insertAfter(lastRow);
-        }
-    }
-
-
-
-
-    // new topic----
-
-
+    // NEW FUNCTION: Find the last descendant of a comment
     function findLastDescendant(parentId) {
         let lastDescendant = $(`#comment-body tr[data-id='${parentId}']`);
         let currentRow = lastDescendant;
@@ -83,7 +34,7 @@ $(document).ready(function(){
             currentRow.nextAll().each(function() {
                 let rowParent = parseInt($(this).data('parent'));
                 // Check if this row is a descendant of our parentId
-                if (rowParent === 0) return false; 
+                if (rowParent === 0) return false; // Reached another top-level comment
                 
                 // Check if this row is a child of our current last descendant
                 let currentId = parseInt(currentRow.data('id'));
@@ -91,14 +42,14 @@ $(document).ready(function(){
                     lastDescendant = $(this);
                     currentRow = $(this);
                     foundMore = true;
-                    return false; 
+                    return false; // Break this each loop, continue while loop
                 }
             });
         }
         return lastDescendant;
     }
 
-    // Post comment/reply
+    // Post comment/reply - FIXED VERSION
     $('#post').click(function(e){
         e.preventDefault();
 
@@ -117,57 +68,29 @@ $(document).ready(function(){
             if(parent != 0){
                 let parentRow = $(`#comment-body tr[data-id='${parent}']`);
                 let parentPadding = parseInt(parentRow.find('td:eq(3)').css('padding-left')) || 0;
-                // padding
                 level = Math.floor(parentPadding / 15) + 1;
             }
 
-            // Build table row
+            // Build table row with Action column
             let newRow = `
                 <tr class="comment-row" data-id="${no}" data-parent="${parent}">
                     <td>${no}</td>
                     <td>${row.commenter}</td>
                     <td>${time}</td>
-                    <td style="padding-left: ${getPadding(level)}px">
-                    ${row.comment}
-                    <a href="#"
-                     class="reply-link"
-                      data-id="${no}" 
-                      data-commenter="${row.commenter}">[Reply]
-                      </a>
-                      </td>
+                    <td style="padding-left: ${getPadding(level)}px">${row.comment}</td>
+                    <td><a href="#" class="reply-link" data-id="${no}" data-commenter="${row.commenter}">[Reply]</a></td>
                 </tr>
             `;
 
-         
-
-
             // Insert new row
             if(parent == 0){
-               
+                // Top-level comment: append to the end
                 $('#comment-body').append(newRow); 
             } else {
-               
+                // Reply: find the last descendant and insert after it
                 let lastDescendant = findLastDescendant(parent);
                 $(newRow).insertAfter(lastDescendant);
             }
-
-
-            // if(parent == 0){
-            //     $('#comment-body').append(newRow); 
-            // } else {
-            //     let parentRow = $(`#comment-body tr[data-id='${parent}']`);
-            //     let lastChild = parentRow;
-            //     parentRow.nextAll('tr').each(function(){
-            //         let rowParent = parseInt($(this).data('parent'));
-            //         if(rowParent == 0 || rowParent != parent) return false;
-            //         lastChild = $(this);
-            //     });
-            //     // $(newRow).insertAfter(lastChild);
-            //     $(newRow).insertAfter(parentRow);
-
-            //     // Reposition parent thread if needed
-            //     repositionThread(parent);
-            // }
 
             // Reset form
             $('#name, #comment').val('');
@@ -179,4 +102,5 @@ $(document).ready(function(){
         });
     });
 
+    // REMOVED: repositionThread function - not needed for this requirement
 });
