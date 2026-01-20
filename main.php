@@ -32,6 +32,14 @@ function countThreadSize($map, $id) {
     return $count;
 }
 
+// Function to highlight @mentions in blue
+function highlightMentions($text) {
+   
+     return preg_replace('/@([\w\s]+?)(?=[\s.,!?;:]|$)/', '<span class="mention">@$1</span>', htmlspecialchars($text, ENT_QUOTES, 'UTF-8'));
+}
+
+
+
 // Build top-level threads list sorted by size (DESC)
 $threadRoots = [];
 foreach ($commentsByParent[0] ?? [] as $root) {
@@ -49,18 +57,19 @@ usort($threadRoots, function($a, $b){ return $b['size'] - $a['size']; });
 function renderThread($map, $comment, $level = 0) {
     $id = intval($comment['commentnumber']);
     $parent = intval($comment['replyto']);
-    $padding = $level * 15;
     $time = date("h:i A", strtotime($comment['commenttime']));
     $name = htmlspecialchars($comment['commenter'], ENT_QUOTES, 'UTF-8');
-    $text = nl2br(htmlspecialchars($comment['comment'], ENT_QUOTES, 'UTF-8'));
+    $text = nl2br(highlightMentions($comment['comment']));
 
     echo "
     <tr class='comment-row' data-id='{$id}' data-parent='{$parent}'>
         <td>{$id}</td>
         <td>{$name}</td>
         <td>{$time}</td>
-        <td style='padding-left:{$padding}px'>{$text}</td>
-        <td><a href='#' class='reply-link' data-id='{$id}' data-commenter='{$name}'>[Reply]</a></td>
+        <td>
+            {$text}
+            <button class='reply-link' data-id='{$id}' data-commenter='{$name}'>Reply</button>
+        </td>
     </tr>";
 
     // Render children (replies)
@@ -92,14 +101,22 @@ function renderThread($map, $comment, $level = 0) {
                 <th>Commenter</th>
                 <th>Time</th>
                 <th>Comment</th>
-                <th>Action</th>
             </tr>
         </thead>
 
         <tbody id="comment-body">
             <?php 
+            $threadCount = count($threadRoots);
+            $currentIndex = 0;
+            
             foreach ($threadRoots as $t) { 
                 renderThread($commentsByParent, $t['root']); 
+                $currentIndex++;
+                
+                // Add a separator row between threads (except after the last one)
+                if ($currentIndex < $threadCount) {
+                    echo '<tr class="thread-separator"><td colspan="4"></td></tr>';
+                }
             } 
             ?>
         </tbody>
@@ -117,3 +134,5 @@ function renderThread($map, $comment, $level = 0) {
 <script src="script.js"></script>
 </body>
 </html>
+
+

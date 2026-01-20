@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // Enable Post button only if name and comment exist
+    // Enable Post button only if both exists
     $('#name, #comment').on('input', function(){
         let name = $('#name').val().trim(); 
         let comment = $('#comment').val().trim(); 
@@ -15,13 +15,8 @@ $(document).ready(function(){
 
         $('#replyto').val(id); 
         let current = $('#comment').val();
-        $('#comment').val(current + '@' + commenter + ' ').focus();
+        $('#comment').val(current + '@' + commenter).focus();
     });
-
-    // Helper for indentation
-    function getPadding(level) {
-        return 15 * level;
-    }
 
     // Function to count rows in a thread
     function countThreadRows(rootId){
@@ -67,12 +62,6 @@ $(document).ready(function(){
         }
     }
 
-
-
-
-    // new topic----
-
-
     function findLastDescendant(parentId) {
         let lastDescendant = $(`#comment-body tr[data-id='${parentId}']`);
         let currentRow = lastDescendant;
@@ -98,7 +87,23 @@ $(document).ready(function(){
         return lastDescendant;
     }
 
-    // Post comment/reply
+    // Function to highlight @mentions in blue
+   function highlightMentions(text) {
+        
+        
+        text = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;')
+            .replace(/\n/g, '<br>')
+      text = text.replace(/@([\w\s]+?)(?=[\s.,!?;:]|$)/g, '<span class="mention">@$1</span>');
+    
+    return text;
+    }
+
+    // Post functionalities
     $('#post').click(function(e){
         e.preventDefault();
 
@@ -106,76 +111,81 @@ $(document).ready(function(){
         let comment = $('#comment').val().trim();
         let replyto = $('#replyto').val() || 0;
 
-        $.post("save_comments.php", { name, comment, replyto }, function(data){
-            let row = JSON.parse(data);
-            let no = row.commentnumber;
-            let parent = row.replyto;
-            let time = row.commenttime;
+        if (!name || !comment) {
+            alert("Please enter both name and comment!");
+            return;
+        }
 
-            // Determine nesting level
-            let level = 0;
-            if(parent != 0){
-                let parentRow = $(`#comment-body tr[data-id='${parent}']`);
-                let parentPadding = parseInt(parentRow.find('td:eq(3)').css('padding-left')) || 0;
-                // padding
-                level = Math.floor(parentPadding / 15) + 1;
+        console.log("Posting comment:", { name, comment, replyto });
+
+         $.ajax({
+            url: 'save_comments.php',
+            type: 'POST',
+            dataType: 'json',   
+            data: {         
+                name: name, 
+                comment: comment, 
+                replyto: replyto 
+            },
+         success: function(response){
+                console.log("Server response:", response);
+                
+                let no = response.commentnumber;
+                let parent = response.replyto;
+                let time = response.commenttime;
+                let commenter = response.commenter;
+                
+                // Highlight mentions in the comment text
+                let commentText = highlightMentions(response.comment);
+
+                // Build table row
+                let newRow = `
+                    <tr class="comment-row" data-id="${no}" data-parent="${parent}">
+                        <td>${no}</td>
+                        <td>${commenter}</td>
+                        <td>${time}</td>
+                        <td>
+                        ${commentText}
+                        <button class="reply-link" data-id="${no}" data-commenter="${commenter}">Reply</button>
+                        </td>
+                    </tr>
+                `;
+
+                // Insert new row
+                if(parent == 0){
+                   
+                   
+                    $('#comment-body .thread-separator:last').remove();
+                    
+                    // Add the new comment
+                    $('#comment-body').append(newRow);
+                    
+                    // Add separator after the new comment
+                    let separator = '<tr class="thread-separator"><td colspan="4"></td></tr>';
+                    $('#comment-body').append(separator);
+                } else {
+                    // For replies, find the last descendant of the parent
+                    let lastDescendant = findLastDescendant(parent);
+                    $(newRow).insertAfter(lastDescendant);
+                }
+
+                // Reset form
+                $('#name').val('');
+                $('#comment').val('');
+                $('#replyto').val('0');
+                $('#post').prop('disabled', true);
+                
+                // Scroll to the new comment
+                $('html, body').animate({
+                    scrollTop: $(`tr[data-id="${no}"]`).offset().top
+                }, 500);
+                
+            } ,
+            error: function(xhr, status, error){
+                console.error("AJAX error:", status, error);
+                console.error("Response text:", xhr.responseText);
+                alert("ERROR: Could not save comment. Check save_comments.php.");
             }
-
-            // Build table row
-            let newRow = `
-                <tr class="comment-row" data-id="${no}" data-parent="${parent}">
-                    <td>${no}</td>
-                    <td>${row.commenter}</td>
-                    <td>${time}</td>
-                    <td style="padding-left: ${getPadding(level)}px">
-                    ${row.comment}
-                    <a href="#"
-                     class="reply-link"
-                      data-id="${no}" 
-                      data-commenter="${row.commenter}">[Reply]
-                      </a>
-                      </td>
-                </tr>
-            `;
-
-         
-
-
-            // Insert new row
-            if(parent == 0){
-               
-                $('#comment-body').append(newRow); 
-            } else {
-               
-                let lastDescendant = findLastDescendant(parent);
-                $(newRow).insertAfter(lastDescendant);
-            }
-
-
-            // if(parent == 0){
-            //     $('#comment-body').append(newRow); 
-            // } else {
-            //     let parentRow = $(`#comment-body tr[data-id='${parent}']`);
-            //     let lastChild = parentRow;
-            //     parentRow.nextAll('tr').each(function(){
-            //         let rowParent = parseInt($(this).data('parent'));
-            //         if(rowParent == 0 || rowParent != parent) return false;
-            //         lastChild = $(this);
-            //     });
-            //     // $(newRow).insertAfter(lastChild);
-            //     $(newRow).insertAfter(parentRow);
-
-            //     // Reposition parent thread if needed
-            //     repositionThread(parent);
-            // }
-
-            // Reset form
-            $('#name, #comment').val('');
-            $('#replyto').val('0');
-            $('#post').prop('disabled', true);
-
-        }).fail(function(){
-            alert("ERROR: Could not save comment. Check save_comments.php.");
         });
     });
 

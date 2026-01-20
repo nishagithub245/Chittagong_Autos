@@ -1,34 +1,31 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
   margin: 0;
   height: 100vh;
- 
+  background-color: #d9d9d9; 
+
 }
 
 .comments-section {
   width: 100%;
   height: 100vh;
-  border-collapse: collapse;
-  background-color: #d9d9d9;
+  background-color: #d9d9d9; 
   padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
+  align-items: center; 
 }
 
 .comment-table {
-  
   table-layout: fixed;
-
-
   width: 80%;
-  border-collapse: collapse; 
+  border-collapse: separate; 
+  border-spacing: 0; 
   background: transparent; 
   flex: 1;                  
-  border-spacing: 0;
   overflow-y: auto;
+  background-color: #d9d9d9; 
+  border: none; 
 }
 
 .comment-table th,
@@ -36,76 +33,139 @@ body {
   padding: 4px 8px;     
   text-align: left;
   font-size: 14px;
-  line-height:50px;      
+  line-height: 50px;      
   vertical-align: middle;
+  background-color: #d9d9d9; 
+  border: none; 
 }
 
 .comment-table thead {
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: solid underline;
   display: table-header-group;
+  background-color: #d9d9d9; 
 }
 
 .comment-table thead th {
-  /* padding-top: 80px; */
   padding-bottom: 4px;
   font-weight: bold;
   text-decoration: underline;
+  background-color: #d9d9d9; 
+  border: none; 
+}
+
+/* Update the comment table column widths */
+.comment-table th:nth-child(1),
+.comment-table td:nth-child(1) {
+  width: 5%;
+  min-width: 50px;
+}
+
+.comment-table th:nth-child(2),
+.comment-table td:nth-child(2) {
+  width: 15%;
+  min-width: 100px;
+}
+
+.comment-table th:nth-child(3),
+.comment-table td:nth-child(3) {
+  width: 15%;
+  min-width: 100px;
+}
+
+.comment-table th:nth-child(4),
+.comment-table td:nth-child(4) {
+  width: 65%;
+  min-width: 300px;
+}
+
+
+.thread-separator {
+  height: 20px; 
+}
+
+.thread-separator td {
+  padding: 0 !important;
+  height: 10px !important;
+  border: none !important;
+  background-color: #d9d9d9 !important;
 }
 
 .comments-inputs {
-  width:80%;
+  width: 80%;
   display: flex;
-  
-  flex-direction : row;
+  flex-direction: row;
   gap: 8px;
-  margin-bottom: 280px;
-  align-items:flex-start;
-  
-  
- 
-
+  margin-bottom: 20px; 
+  align-items: flex-start;
+  background-color: #d9d9d9; 
 }
 
 .comments-inputs input[type="text"] {
   padding: 5px;
   border: 1.5px solid black;
   font-size: 14px;
-
- 
- 
+  background-color: white; 
 }
 
 #name {
-  flex-grow: 1; 
-  
-}
-#comment {
-    flex-grow:1;
+  flex-grow: 1;
 }
 
+#comment {
+  flex-grow: 2;
+}
 
 .comments-inputs button {
   padding: 6px 12px;
   background-color: #0a3663ea;
   color: white;
-  border: 1.5px solid rgba(0, 0, 0, 0.856) ;
+  border: 1.5px solid rgba(0, 0, 0, 0.856);
   cursor: pointer;
   font-size: 14px;
- 
-  
 }
 
-
-
-
-
+/* reply button styling */
 .reply-link {
-    color: #007BFF;         
+  color: #007BFF;         
   text-decoration:underline ;
   margin: 0;
   cursor: pointer;          
   margin-top: 5px;          
-  display: inline-block;
   font-size: 0.9em;
+  border: none;
+  background: none;
+}
+
+.reply-link::before {
+  content: "[";
+}
+
+.reply-link::after {
+  content: "]";
+}
+
+.mention {
+    color: #007BFF !important; 
+     /* font-weight: bold; */
+    
+}
+ 
+
+/* proper spacing for comment content and reply button */
+.comment-table td:nth-child(4) {
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+
+
+/* Adjust line height to accommodate button */
+.comment-table td {
+  line-height: 1.4;
+}
+
+/* Make sure the button doesn't affect text alignment */
+.comment-table td:nth-child(4) br {
+  margin-bottom: 5px;
 }
